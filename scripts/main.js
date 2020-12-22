@@ -7,6 +7,8 @@ searchField.addEventListener('keyup', search)
 
 const results = document.querySelector('#results')
 
+const onAnimeChoosed = new Event('onAnimeChoosed');
+
 window.onload = init
 
 function init() {
@@ -22,28 +24,61 @@ function search(e) {
             .then(data => {
                 displayResults(data.results)
             })
-        }
     }
-    
-    function displayResults(data)
-    {
-        results.innerHTML = ''
-        console.log(data)
+}
 
-    for(let row of data){
+function displayResults(data) {
+    results.innerHTML = ''
+    console.log(data)
+
+    for (let row of data) {
         let linkResult = document.createElement('a')
         linkResult.classList.add('dropdown-item')
-        linkResult.dataset.modal=row.mal_id
-        linkResult.addEventListener('onAnimeChoosed', loadModal)
+        linkResult.dataset.animedetails = JSON.stringify(row)
+        // linkResult.addEventListener('onAnimeChoosed', loadCard)
+        // linkResult.addEventListener('click', dispatchEvent(onAnimeChoosed))
+        linkResult.addEventListener('click', loadCard)
         linkResult.textContent = row.title
         results.appendChild(linkResult)
     }
 }
 
-function loadModal(data)
-{
-    let modal=` 
-    <div class="modal fade" id="modal-detail-anime">
+function loadCard(e) {
+    document.querySelector('#anime-list').appendChild(cardTemplate(e.target.dataset.animedetails))
+}
+
+function cardTemplate(anime) {
+    anime=JSON.parse(anime)
+    let card = document.createElement('div')
+    card.classList.add('col-sm-6', 'col-md-4', 'col-xl-2')
+    card.innerHTML = `<div class="card mb-4 box-shadow">
+                            <div class="card-body">
+                                <img class="card-img" alt="${anime.title}" src="${anime.image_url}">
+
+                                <p class="h6">
+                                ${anime.title}
+                                    <span class="badge badge-info">${anime.score}</span>
+                                </p>
+
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-sm btn-outline-secondary" data-toggle="modal" data-target="#modal-${anime.mal_id}">
+                                            Info
+                                        </button>
+                                    </div>
+
+                                    <small class="text-muted">${anime.episodes} épisode${(anime.episodes > 1) ? 's' : ''}</small>
+                                </div>
+                            </div>
+                        </div>`
+
+    return card
+}
+
+
+function loadModal(anime) {
+    let modal = ` 
+    <div class="modal fade" id="modal-${anime.mal_id}">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
