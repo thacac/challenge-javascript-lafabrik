@@ -1,48 +1,48 @@
 /**
  * @todo Point d'entrée pour faire vos exercices...
  */
+const searchApi = new SearchResource('search')
+window.onload = init
 
 const searchField = document.querySelector('#search')
 searchField.addEventListener('keyup', search)
 
 const results = document.querySelector('#results')
 
-window.onload = init
-
 function init() {
     console.log("Coucou ! C'est ici que l'aventure commence ! Bon courage :-)")
 }
 
-function search(e) {
+async function search(e) {
     e.preventDefault()
     let search = e.target.value
-    if (search.length >= 3) {
-        fetch(`https://api.jikan.moe/v3/search/anime?q=${search}&limit=6`)
-            .then(response => response.json())
-            .then(data => {
-                displayResults(data.results)
-            })
-        }
-    }
-    
-    function displayResults(data)
-    {
-        results.innerHTML = ''
-        console.log(data)
+    // if (search.length >= 3) {
+    //     fetch(`https://api.jikan.moe/v3/search/anime?q=${search}&limit=10`)
+    //         .then(response => response.json())
+    //         .then(data => {
+    //             displayResults(data.results)
+    //         })
+    // }
+    let result = await searchApi.byName(search)
+    console.log(result)
+}
 
-    for(let row of data){
+function displayResults(data) {
+    results.innerHTML = ''
+    console.log(data)
+
+    for (let row of data) {
         let linkResult = document.createElement('a')
         linkResult.classList.add('dropdown-item')
-        linkResult.dataset.modal=row.mal_id
+        linkResult.dataset.modal = row.mal_id
         linkResult.addEventListener('onAnimeChoosed', loadModal)
         linkResult.textContent = row.title
         results.appendChild(linkResult)
     }
 }
 
-function loadModal(data)
-{
-    let modal=` 
+function loadModal(data) {
+    let modal = ` 
     <div class="modal fade" id="modal-detail-anime">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">

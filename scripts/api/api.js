@@ -1,5 +1,5 @@
 class LibraryApi {
-    
+
     /**
      * @todo Instancier Axios
      * @param {string} base_url
@@ -7,7 +7,8 @@ class LibraryApi {
      * @see https://github.com/axios/axios
      */
     constructor(base_url) {
-        throw new Error("Not implemented")
+        this.base_url = base_url
+        // throw new Error("Not implemented")
     }
 
     /**
@@ -17,6 +18,12 @@ class LibraryApi {
      * @see https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/Promise
      */
     fetch(resource_url) {
-        throw new Error("Not implemented")
+        fetch(`${this.base_url}${resource_url}`)
+            .then(response => response.json())
+            .then(data => {
+               return data.results
+            })
+
+        // throw new Error("Not implemented")
     }
 }
