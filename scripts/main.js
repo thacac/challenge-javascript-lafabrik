@@ -77,7 +77,7 @@ function addCard(animedata) {
         clone.querySelector('p.h6 > span:first-child').textContent = anime.title
         clone.querySelector('p.h6 > span:last-child').textContent = anime.score
         clone.querySelector('button').dataset.details = anime.mal_id
-        clone.querySelector('small').textContent = `${anime.episodes} épisode${(anime.episodes > 1) ? 's' : '' }`
+        clone.querySelector('small').textContent = `${anime.episodes} épisode${(anime.episodes > 1) ? 's' : ''}`
 
         list.appendChild(clone)
 
@@ -94,33 +94,33 @@ function addCard(animedata) {
  */
 function getAnimeDetails(id) {
     return new Promise((resolve, reject) => {
-                    fetch(`https://api.jikan.moe/v3/anime/${id}`)
-                        .then(response => response.json())
-                        .then(data => {
-                            resolve(data)
-                        })
-                })
+        fetch(`https://api.jikan.moe/v3/anime/${id}`)
+            .then(response => response.json())
+            .then(data => {
+                resolve(data)
+            })
+    })
 }
 
 /**
  * @param {event} e
  */
 async function loadModal(e) {
-                    e.preventDefault()
+    e.preventDefault()
 
     let details = await getAnimeDetails(e.target.dataset.details)
     let listGenres = ''
     for (let genre of details.genres) {
-                    listGenres += `<span class="badge badge-info">${genre.name}</span>`
-                }
+        listGenres += `<span class="badge badge-info">${genre.name}</span>`
+    }
 
     document.querySelector('#modal-title').textContent = details.title
     document.querySelector('#link-trailer').href = details.trailer_url
 
     if ("content" in document.createElement("template")) {
 
-                    // On prépare une ligne pour le tableau
-                    let template = document.querySelector("#animeDetails");
+        // On prépare une ligne pour le tableau
+        let template = document.querySelector("#animeDetails");
 
         // On clone la ligne et on l'insère dans le tableau
         let tbody = document.querySelector("tbody");
@@ -132,13 +132,13 @@ async function loadModal(e) {
         clone.querySelector('#listGenres').innerHTML = listGenres
         clone.querySelector('#synopsis').innerHTML = details.synopsis
 
-        tbody.prepend(clone);
-        tbody.removeChild(tbody.lastChild);
+        tbody.innerHTML = '';
+        tbody.appendChild(clone);
 
     } else {
-                    // Une autre méthode pour ajouter les lignes
-                    // car l'élément HTML n'est pas pris en charge.
-                }
+        // Une autre méthode pour ajouter les lignes
+        // car l'élément HTML n'est pas pris en charge.
+    }
 
     $('#modal-detail-anime').modal('toggle')
 }
