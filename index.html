@@ -46,6 +46,27 @@
                 <!-- //////////////////////////////////////////////////////////// -->
                 <div class="row" id="anime-list">
                     <!-- Element dynamique -->
+                    <template id="cardChoice">
+                        <div class="card mb-4 box-shadow">
+                            <div class="card-body">
+                                <img class="card-img" alt="" src="">
+                                <p class="h6">
+                                    <span></span>
+                                    <span class="badge badge-info"></span>
+                                </p>
+                                </div>
+                                <div class="card-footer">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-sm btn-outline-secondary info" data-target="#modal-detail-anime" data-details="">
+                                            Info
+                                        </button>
+                                    </div>
+                                    <small class="text-muted"></small>
+                                </div>
+                            </div>
+                        </div>
+                    </template>
                     <!-- /Element dynamique -->
                 </div>
                 <!-- //////////////////////////////////////////////////////////// -->
@@ -73,8 +94,8 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <!-- Element dynamique -->
-                    <h5 class="modal-title" id="modal-title">🔥 Fate/Zero</h5>
-                    <a class="btn btn-link" id="link-trailer" title="Click to see trailer" target="_blank" href="https://www.youtube.com/embed/21-1-ioCfXY?enablejsapi=1&wmode=opaque&autoplay=1">🎥 Trailer</a>
+                    <h5 class="modal-title" id="modal-title"></h5>
+                    <a class="btn btn-link" id="link-trailer" title="Click to see trailer" target="_blank" href="">🎥 Trailer</a>
                     <!-- /Element dynamique -->
                     
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
@@ -83,29 +104,24 @@
                     <table class="table table-condensed table-striped">
                         <tbody>
                             <!-- Element dynamique -->
+                            <template id="animeDetails">
                             <tr>
                                 <td>Source</td>
-                                <td>Light Novel</td>
+                                <td id="source"></td>
                             </tr>
                             <tr>
                                 <td>Duration</td>
-                                <td>28 min per ep</td>
+                                <td id="duration"></td>
                             </tr>
                             <tr>
                                 <td>Genre</td>
-                                <td>
-                                    <span class="badge badge-info">Action</span>
-                                    <span class="badge badge-info">Supernatural</span>
-                                    <span class="badge badge-info">Magic</span>
-                                    <span class="badge badge-info">Fantasy</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Synopsis</td>
-                                <td>
-                                    With the promise of granting any wish, the omnipotent Holy Grail triggered three wars in the past, each too cruel and fierce to leave a victor. In spite of that, the wealthy Einzbern family is confident that the Fourth Holy Grail War will be different; namely, with a vessel of the Holy Grail now in their grasp. Solely for this reason, the much hated \"Magus Killer\" Kiritsugu Emiya is hired by the Einzberns, with marriage to their only daughter Irisviel as binding contract. Kiritsugu now stands at the center of a cutthroat game of survival, facing off against six other participants, each armed with an ancient familiar, and fueled by unique desires and ideals. Accompanied by his own familiar, Saber, the notorious mercenary soon finds his greatest opponent in Kirei Kotomine, a priest who seeks salvation from the emptiness within himself in pursuit of Kiritsugu. Based on the light novel written by Gen Urobuchi, Fate/Zero depicts the events of the Fourth Holy Grail War—10 years prior to Fate/stay night. Witness a battle royale in which no one is guaranteed to survive. [Written by MAL Rewrite]
-                                </td>
-                            </tr>
+                                <td id="listGenres"></td>
+                                </tr>
+                                <tr>
+                                    <td>Synopsis</td>
+                                    <td id="synopsis"></td>
+                                </tr>
+                            </template>
                             <!-- /Element dynamique -->
                         </tbody>
                     </table>

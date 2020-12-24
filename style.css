@@ -1,4 +1,8 @@
 
+.card{
+    margin : 10px;
+    width: 250px;
+}
 .card-body{
     height: 250px;
 }
