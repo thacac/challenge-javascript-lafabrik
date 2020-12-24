@@ -74,6 +74,8 @@ function cardTemplate(animedata) {
                                 ${anime.title}
                                     <span class="badge badge-info">${anime.score}</span>
                                 </p>
+                                </div>
+                                <div class="card-footer">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-sm btn-outline-secondary info" data-target="#modal-detail-anime" data-details="${animedata}">
@@ -122,7 +124,7 @@ function loadModal(e) {
     //                 <h5 class="modal-title" id="modal>🔥 Fate/Zero</h5>
     //                 <a class="btn btn-link trailer" title="Click to see trailer" target="_blank" href="https://www.youtube.com/embed/21-1-ioCfXY?enablejsapi=1&wmode=opaque&autoplay=1">🎥 Trailer</a>
     //                 <!-- /Element dynamique -->
-                    
+
     //                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
     //             </div>
     //             <div class="modal-body">

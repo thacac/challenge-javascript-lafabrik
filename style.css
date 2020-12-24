@@ -1,9 +1,19 @@
-.card-body > .card-img {
-    width: 120px;
-    margin: 0 auto;
-    display: block;
+.card-body  {
+    height: 250px;
 }
 
+.card-body > .card-img {
+    width: 120px;
+    height: 160px;
+    margin: 0 auto;
+    display: block;
+    object-fit: cover;
+    object-position: 50% 50%;
+}
+
+p.h6{
+    padding: 10px 0;
+}
 .navbar form {
     position: relative;
 }
