@@ -66,7 +66,7 @@ function loadCard(e) {
 function cardTemplate(animedata) {
     anime = JSON.parse(animedata)
     let card = document.createElement('div')
-    card.classList.add('col-sm-6', 'col-md-4', 'col-xl-2')
+    card.classList.add('col-sm-6', 'col-md-4', 'col-xl-3')
     card.innerHTML = `<div class="card mb-4 box-shadow">
                             <div class="card-body">
                                 <img class="card-img" alt="${anime.title}" src="${anime.image_url}">

@@ -1,9 +1,10 @@
-.card-body  {
+
+.card-body{
     height: 250px;
 }
 
 .card-body > .card-img {
-    width: 120px;
+    width: 150px;
     height: 160px;
     margin: 0 auto;
     display: block;
